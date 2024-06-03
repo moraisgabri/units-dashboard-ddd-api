@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  api:
+    image: units-api:1.0.0
+    container_name: ${API_HOST}
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - ${API_PORT}:${API_PORT}
+    volumes:
+      - ./api:/api
+      - units-api-volumes-node-modules:/api/node_modules
+    depends_on:
+      - database
+
+  database:
+    image: units-database:1.0.0
+    container_name: ${DATABASE_HOST}
+    env_file: .env
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    volumes:
+      - database-volume:/data/db
+
+volumes:
+  units-api-volumes-node-modules:
+    name: "units-api-volumes-node-modules"
+  database-volume:
+    name: "database-volume"
