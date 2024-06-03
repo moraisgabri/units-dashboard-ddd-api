@@ -18,12 +18,10 @@ Make sure to fill correctly your environment variables
 ```
 // .env
 
-// MONGO DEFAULT CONFIG
 MONGO_INITDB_ROOT_USERNAME=root
 MONGO_INITDB_ROOT_PASSWORD=root
 MONGO_INITDB_DATABASE=unit
 
-// DOCKER CONFIG
 API_PORT=8001
 API_HOST=units-api
 DATABASE_HOST=units-database
